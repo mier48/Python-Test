@@ -1,8 +1,10 @@
 # –– coding: utf-8 ––
-def my_function():
+def my_function(nb):
     var = 1
-    while var < 6:
+    while var < nb+1:
         print("hola")
         var += 1
 
-my_function()
+nb = input("introduzca el numero\n")
+
+my_function(int(nb))
