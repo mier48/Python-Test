@@ -23,10 +23,18 @@ print("Conexión conseguida.")
 cur = dbh.cursor()
 #cur.execute("CREATE TABLE eni (mi_num integer unique, mi_cadena varchar(30))")
 cur.execute("SELECT * FROM eni")
-rows = cur.fetchall()
+#rows = cur.fetchall()
+cur.arraysize = 2
+while 1:
+    rows = cur.fetchmany()
+    print("Obtenido %d resultados de fetchmany()"%len(rows))
+    if not len(rows):
+        break
+    for row in rows:
+        print(row)
 
-for row in rows:
-    print(row)
+# for row in rows:
+#     print(row)
 
 dbh.commit()
 dbh.close()
