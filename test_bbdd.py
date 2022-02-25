@@ -1,7 +1,7 @@
 # –– coding: utf-8 ––
 import psycopg2
 
-rows = ({'num':0, 'text':'cero'}, {'num':1, 'text':'uno'})
+#rows = ({'num':0, 'text':'cero'}, {'num':1, 'text':'uno'})
 
 def getdsn(db = None, user = None, password = None, host = None):
     if user == None:
@@ -20,10 +20,13 @@ dsn = getdsn('postgres', 'postgres', 'keyone', 'localhost')
 print("Conexión a %s"%dsn)
 dbh = psycopg2.connect(dsn)
 print("Conexión conseguida.")
-print(rows)
 cur = dbh.cursor()
 #cur.execute("CREATE TABLE eni (mi_num integer unique, mi_cadena varchar(30))")
-cur.execute("DELETE FROM eni")
-cur.executemany("INSERT INTO eni VALUES (%(num)s, %(text)s)", rows)
+cur.execute("SELECT * FROM eni")
+rows = cur.fetchall()
+
+for row in rows:
+    print(row)
+
 dbh.commit()
 dbh.close()
