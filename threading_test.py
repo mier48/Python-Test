@@ -1,7 +1,7 @@
 # –– coding: utf-8 ––
-from threading import thread
+from threading import Thread
 
-class MyThread(thread):
+class MyThread(Thread):
     def run(self):
         print('Hola del thread %s'%self.name)
 
